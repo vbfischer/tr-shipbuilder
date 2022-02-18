@@ -1,0 +1,48 @@
+{
+  "cost": 50000,
+  "points": 2.5,
+  "hullConfiguration": {
+    "close": {
+      "name": "Close Structure",
+      "streamlined": "Partial",
+      "hullPoints": 0.1,
+      "cost": -0.1
+    },
+    "standard": {
+      "name": "Standard",
+      "streamlined": "Partial",
+      "hullPoints": 1,
+      "cost": 1
+    },
+    "streamlined": {
+      "name": "Streamlined",
+      "streamlined": true,
+      "hullPoints": 1,
+      "cost": 0.5
+    },
+    "dispersed": {
+      "name": "Dispersed Structure",
+      "streamlined": false,
+      "hullPoints": -0.1,
+      "cost": -0.5
+    },
+    "planetoid": {
+      "name": "Planetoid",
+      "streamlined": false,
+      "hullPoints": 0.25,
+      "cost": "Special"
+    },
+    "sphere": {
+      "name": "Sphere",
+      "streamlined": "Partial",
+      "hullPoints": 1,
+      "cost": -0.25
+    },
+    "buffered": {
+      "name": "Buffered Planetoid",
+      "streamlined": false,
+      "hullPoints": 0.5,
+      "cost": "Special"
+    }
+  }
+}

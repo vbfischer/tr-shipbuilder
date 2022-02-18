@@ -1,0 +1,35 @@
+{
+  "name": "tr-shipbuilder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bryce Fischer",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack serve --port 3002",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "@types/styled-components": "^5.1.23",
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "^5.69.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@reduxjs/toolkit": "^1.7.2",
+    "framer-motion": "^6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "styled-components": "^5.3.3"
+  }
+}
