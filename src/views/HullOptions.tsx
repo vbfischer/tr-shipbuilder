@@ -1,11 +1,14 @@
 import React from "react";
 
+import { useAppSelector, useAppDispatch, useFormState } from "../hooks";
+
 import {
   Stack,
   FormLabel,
   FormControl,
   NumberInput,
   NumberInputField,
+  Input,
   Center,
   HStack,
   Heading,
@@ -14,7 +17,31 @@ import {
   Select,
 } from "@chakra-ui/react";
 
+import { selectShipInfo, updateShip } from "../features/ship/ShipSlice";
+
+import {
+  getHullConfigurations,
+  getHullOptions,
+  getReinforcedOptions,
+} from "../api";
+
 export const HullOptions = () => {
+  const hullConfigurations = getHullConfigurations();
+  const { hullSize, hullType, reinforced, hullOptions } =
+    useAppSelector(selectShipInfo);
+  const dispatch = useAppDispatch();
+
+  const {
+    registerInput,
+    registerNumericInput,
+    registerStringOrNumberInput,
+    data,
+  } = useFormState();
+
+  React.useEffect(() => {
+    dispatch(updateShip(data));
+  }, [data]);
+
   return (
     <>
       <Center>
@@ -23,25 +50,34 @@ export const HullOptions = () => {
       <Heading size="md">Hull Size and Configuration</Heading>
       <HStack spacing="24px">
         <FormControl>
-          <FormLabel htmlFor="hull-size">Specify Hull Size</FormLabel>
-          <NumberInput defaultValue={100} min={10} id="hull-size">
+          <FormLabel htmlFor="hullSize">Specify Hull Size</FormLabel>
+          <NumberInput
+            value={hullSize}
+            {...registerNumericInput({ name: "hullSize" })}
+          >
             <NumberInputField />
           </NumberInput>
         </FormControl>
         <FormControl>
-          <FormLabel htmlFor="hull-reinforced">Reinforced</FormLabel>
-          <Select id="hull-reinforced">
-            <option value="none">None</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+          <FormLabel htmlFor="reinforced">Reinforced</FormLabel>
+          <Select {...registerInput({ name: "reinforced" })} value={reinforced}>
+            {getReinforcedOptions().map((r) => (
+              <option key={r.id} value={r.id}>
+                {r.value}
+              </option>
+            ))}
           </Select>
         </FormControl>
       </HStack>
       <HStack>
         <FormControl>
           <FormLabel htmlFor="hull-type">Hull Type</FormLabel>
-          <Select id="hull-type">
-            <option>Streamlined</option>
+          <Select {...registerInput({ name: "hullType" })} value={hullType}>
+            {hullConfigurations.map((h) => (
+              <option key={h.id} value={h.id}>
+                {h.value}
+              </option>
+            ))}
           </Select>
         </FormControl>
         <FormControl>
@@ -94,15 +130,16 @@ export const HullOptions = () => {
       </HStack>
       <Stack>
         <Heading size="md">Other Hull Options</Heading>
-        <CheckboxGroup>
+        <CheckboxGroup
+          value={hullOptions}
+          {...registerStringOrNumberInput({ name: "hullOptions" })}
+        >
           <Stack>
-            <Checkbox value="emissions">
-              Emissions Absorption Grid (TL8)
-            </Checkbox>
-            <Checkbox value="head-shielding">Heat Shielding (TL6)</Checkbox>
-            <Checkbox value="radiation-shielding">
-              Radiation Shielding (TL7)
-            </Checkbox>
+            {getHullOptions().map((o) => (
+              <Checkbox value={o.id} key={o.id}>
+                {o.value}
+              </Checkbox>
+            ))}
           </Stack>
         </CheckboxGroup>
       </Stack>

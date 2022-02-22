@@ -1,11 +1,47 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import {
+  Stack,
+  Box,
+  Table,
+  TableCaption,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+} from "@chakra-ui/react";
 
-import {useAppSelector} from '../hooks';
-import { selectName } from "../features/ship/ShipSlice";
+import { useAppSelector } from "../hooks";
+import { selectShipSummary } from "../features/ship/ShipSlice";
 
 export const SummaryView = () => {
-  const name = useAppSelector(selectName);
+  const { name, techLevel, items } = useAppSelector(selectShipSummary);
 
-  return <Box width="300px">{name}</Box>;
+  return (
+    <Stack width="500px">
+      <Box>Ship Name: {name}</Box>
+      <Box>Tech Level: {techLevel}</Box>
+      <Table>
+        <TableCaption>Summary Information</TableCaption>
+        <Thead>
+          <Tr>
+            <Th></Th>
+            <Th></Th>
+            <Th>Tons</Th>
+            <Th>Cost (MCr)</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {items.hull.map((i, ndx) => (
+            <Tr>
+            <Td>{ndx === 0 ? "Hull" : ""}</Td>
+            <Td>{i?.description}</Td>
+            <Td>{i?.tonnage}</Td>
+            <Td>{i?.cost}</Td>
+          </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </Stack>
+  );
 };

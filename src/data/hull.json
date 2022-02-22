@@ -12,13 +12,13 @@
       "name": "Standard",
       "streamlined": "Partial",
       "hullPoints": 1,
-      "cost": 1
+      "cost": 0
     },
     "streamlined": {
       "name": "Streamlined",
       "streamlined": true,
       "hullPoints": 1,
-      "cost": 0.5
+      "cost": 0.2
     },
     "dispersed": {
       "name": "Dispersed Structure",
@@ -30,7 +30,7 @@
       "name": "Planetoid",
       "streamlined": false,
       "hullPoints": 0.25,
-      "cost": "Special"
+      "cost": 0
     },
     "sphere": {
       "name": "Sphere",
@@ -42,7 +42,44 @@
       "name": "Buffered Planetoid",
       "streamlined": false,
       "hullPoints": 0.5,
-      "cost": "Special"
+      "cost": 0
+    }
+  },
+  "reinforced": {
+    "none": {
+      "cost": 0,
+      "hullPoint": 0,
+      "name": "None"
+    },
+    "reinforced": {
+      "cost": 0.5,
+      "hullPoint": 0.1,
+      "name": "Reinforced Hull"
+    },
+    "light": {
+      "cost": -0.25,
+      "hullPoints": -0.1,
+      "name": "Light Hull"
+    }
+  },
+  "options": {
+    "emissionsAbsorption": {
+      "name": "Emissions Absorption Grid (TL8)",
+      "techLevel": 8,
+      "cost": 40000,
+      "tonnage": 0.02
+    },
+    "heatShielding": {
+      "name": "Heat Shielding (TL6)",
+      "techLevel": 6,
+      "cost": 100000,
+      "tonnage": 0
+    },
+    "radiationShielding": {
+      "name": "Radiation Shielding (TL7)",
+      "techLevel": 7,
+      "cost": 25000,
+      "tonnage": 0
     }
   }
 }
